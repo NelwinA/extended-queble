@@ -62,7 +62,7 @@ func attack() -> void:
 		
 func apply_slow(input_vector, delta) -> void: 
 	apply_friction(FRICTION * delta * input_vector)
-	
+	#hello
 func apply_friction(amount) -> void:
 	if velocity.length() > amount:
 		velocity -= velocity.normalized() * amount
