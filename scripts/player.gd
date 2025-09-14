@@ -1,7 +1,7 @@
 
 extends CharacterBody2D
 
-const ACCELERATION = 8002
+const ACCELERATION = 800
 const FRICTION = 500
 const MAX_SPEED = 120
 enum {IDLE, RUN, ATTACK, WALK, RUNATTACK}
@@ -56,19 +56,17 @@ func runAttack() -> void:
 	
 func attack() -> void:
 	var attacking = Input.is_action_just_pressed("attack")
-	var stateCc = get_velocity()
-	if attacking && stateCc == Vector2.ZERO:
+	var currentV = get_velocity()
+	if attacking && currentV == Vector2.ZERO:
 		state = ATTACK
 		
-func apply_slow(input_vector, delta) -> void: 
-	apply_friction(FRICTION * delta * input_vector)
-	#hello
+
 func apply_friction(amount) -> void:
 	if velocity.length() > amount:
 		velocity -= velocity.normalized() * amount
 	else: 
 		velocity = Vector2.ZERO
-
+		
 func apply_movement(amount) -> void:
 	velocity += amount
 	velocity = velocity.limit_length(MAX_SPEED)
