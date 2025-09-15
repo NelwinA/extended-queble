@@ -26,7 +26,6 @@ func _physics_process(delta):
 	walk()
 	runAttack()
 	attack()
-	applyCollision()
 	animate()
 
 func move(delta):
@@ -71,10 +70,12 @@ func applyCollision() -> void:
 	var up = Vector2(0, -1)
 	var down = Vector2(0, 1)
 	var cNode = state_machine.get_current_node()
-	$AttackArea/collisionRight.disabled = !((cNode == "run_attack" || cNode == "attack") && (blend_position == right || down))
-	$AttackArea/collisionLeft.disabled = !(cNode == "run_attack" && blend_position == left)
-	$AttackArea/collisionDown.disabled = !(cNode == "run_attack" && blend_position == down)
-	$AttackArea/collisionUp.disabled = !(cNode == "run_attack" && blend_position == up) 
+	
+	$AttackArea/collisionRight.disabled = !((cNode == "run_attack" || "attack") && blend_position == right)
+	$AttackArea/collisionLeft.disabled = !((cNode == "run_attack" || "attack") && blend_position == left)
+	$AttackArea/collisionDown.disabled = !((cNode == "run_attack" || "attack") && blend_position == down)
+	$AttackArea/collisionUp.disabled = !((cNode == "run_attack" || "attack") && blend_position == up) 
+	
 	
 func apply_friction(amount) -> void:
 	if velocity.length() > amount:
@@ -90,3 +91,16 @@ func animate() -> void:
 	state_machine.travel(animTree_state_keys[state])
 	animationTree.set(blend_pos_paths[state], blend_position)
 	
+
+func resetCollisions() -> void:
+	$AttackArea/collisionRight.disabled = true
+	$AttackArea/collisionLeft.disabled = true
+	$AttackArea/collisionDown.disabled = true
+	$AttackArea/collisionUp.disabled = true 
+
+func _on_animation_tree_animation_started(anim_name: StringName) -> void:
+	applyCollision()
+
+
+func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
+	resetCollisions()
