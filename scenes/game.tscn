@@ -1121,7 +1121,7 @@ position = Vector2(149, 0)
 scale = Vector2(3.5625, 4.3125)
 sprite_frames = SubResource("SpriteFrames_eixiq")
 animation = &"idle"
-frame_progress = 0.701904
+frame_progress = 0.292648
 
 [node name="Area2D" type="Area2D" parent="enemy" groups=["enemy"]]
 
