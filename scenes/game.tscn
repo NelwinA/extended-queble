@@ -1098,19 +1098,17 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3c2w2"]
-size = Vector2(20, 23)
+size = Vector2(44, 61)
 
 [node name="game" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-visible = false
 scale = Vector2(-5.8789, -4.50759)
 tile_map_data = PackedByteArray("AAD8//v/AAAIAB4AAAD8//z/AAAIAB8AAAD8//3/AAAIACAAAAD8//7/AAAIACEAAAD8////AAAIACIAAAD8/wAAAAAIACMAAAD8/wEAAAAIACQAAAD9//v/AAAJAB4AAAD9//z/AAAJAB8AAAD9//3/AAAJACAAAAD9//7/AAAJACEAAAD9////AAAJACIAAAD9/wAAAAAJACMAAAD9/wEAAAAJACQAAAD+//v/AAAKAB4AAAD+//z/AAAKAB8AAAD+//3/AAAKACAAAAD+//7/AAAKACEAAAD+////AAAKACIAAAD+/wAAAAAKACMAAAD+/wEAAAAKACQAAAD///v/AAALAB4AAAD///z/AAALAB8AAAD///3/AAALACAAAAD///7/AAALACEAAAD/////AAALACIAAAD//wAAAAALACMAAAD//wEAAAALACQAAAAAAPv/AAAMAB4AAAAAAPz/AAAMAB8AAAAAAP3/AAAMACAAAAAAAP7/AAAMACEAAAAAAP//AAAMACIAAAAAAAAAAAAMACMAAAAAAAEAAAAMACQAAAABAPv/AAANAB4AAAABAPz/AAANAB8AAAABAP3/AAANACAAAAABAP7/AAANACEAAAABAP//AAANACIAAAABAAAAAAANACMAAAABAAEAAAANACQAAAACAPv/AAAOAB4AAAACAPz/AAAOAB8AAAACAP3/AAAOACAAAAACAP7/AAAOACEAAAACAP//AAAOACIAAAACAAAAAAAOACMAAAACAAEAAAAOACQAAAADAPv/AAAPAB4AAAADAPz/AAAPAB8AAAADAP3/AAAPACAAAAADAP7/AAAPACEAAAADAP//AAAPACIAAAADAAAAAAAPACMAAAADAAEAAAAPACQAAAD8/wIAAAAIACUAAAD9/wIAAAAJACUAAAD+/wIAAAAKACUAAAD//wIAAAALACUAAAAAAAIAAAAMACUAAAABAAIAAAANACUAAAACAAIAAAAOACUAAAADAAIAAAAPACUAAAA=")
 tile_set = SubResource("TileSet_bltj0")
 collision_visibility_mode = 1
 
 [node name="player" parent="." instance=ExtResource("2_xyr3s")]
-visible = false
 scale = Vector2(2.41202, 1.5838)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
@@ -1119,12 +1117,14 @@ zoom = Vector2(1.985, 1.985)
 [node name="enemy" type="CharacterBody2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="enemy"]
-position = Vector2(0, -2)
-scale = Vector2(1.5, 1.625)
+position = Vector2(149, 0)
+scale = Vector2(3.5625, 4.3125)
 sprite_frames = SubResource("SpriteFrames_eixiq")
 animation = &"idle"
-frame_progress = 0.32181
+frame_progress = 0.701904
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy"]
-position = Vector2(0, -0.5)
+[node name="Area2D" type="Area2D" parent="enemy" groups=["enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy/Area2D"]
+position = Vector2(149, 4)
 shape = SubResource("RectangleShape2D_3c2w2")

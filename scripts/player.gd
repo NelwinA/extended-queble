@@ -103,3 +103,8 @@ func _on_animation_tree_animation_started(anim_name: StringName) -> void:
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	resetCollisions()
+
+
+func _on_attack_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("enemy"):
+		print("collided")
