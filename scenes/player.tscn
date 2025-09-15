@@ -1876,7 +1876,7 @@ states/run_attack/position = Vector2(809, 57)
 states/walk/node = SubResource("AnimationNodeBlendTree_rypgb")
 states/walk/position = Vector2(542, -95.216)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_bk7ue"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_c1y5f"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_yr75w"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_tcsa5"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_i76ax"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_hsa2r"), "attack", "run", SubResource("AnimationNodeStateMachineTransition_pnayj"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_swsfk"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_aoiiu"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_snb86"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_ampmq"), "run_attack", "run", SubResource("AnimationNodeStateMachineTransition_88wyi"), "run", "run_attack", SubResource("AnimationNodeStateMachineTransition_tm3le")]
-graph_offset = Vector2(0, -183.986)
+graph_offset = Vector2(0, -73.0721)
 
 [node name="player" type="CharacterBody2D"]
 collision_layer = 2
