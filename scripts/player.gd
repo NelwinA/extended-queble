@@ -26,6 +26,7 @@ func _physics_process(delta):
 	walk()
 	runAttack()
 	attack()
+	applyCollision()
 	animate()
 
 func move(delta):
@@ -35,6 +36,7 @@ func move(delta):
 		apply_friction(FRICTION * delta)
 	else:
 		state = RUN
+		#resetCollision() 
 		apply_movement(input_vector * ACCELERATION * delta)
 		blend_position = input_vector
 	move_and_slide()
@@ -53,6 +55,8 @@ func runAttack() -> void:
 	
 	if stateC != IDLE && attacking:
 		state = RUNATTACK
+		
+		
 	
 func attack() -> void:
 	var attacking = Input.is_action_just_pressed("attack")
@@ -60,7 +64,14 @@ func attack() -> void:
 	if attacking && currentV == Vector2.ZERO:
 		state = ATTACK
 		
-
+		
+func applyCollision() -> void:
+	var cNode = state_machine.get_current_node()
+	$AttackArea/collisionRight.disabled = !(cNode == "run_attack" && velocity.x > 0)
+	$AttackArea/collisionLeft.disabled = !(cNode == "run_attack" && velocity.x < 0)
+	$AttackArea/collisionDown.disabled = !(cNode == "run_attack" && velocity.y > 0)
+	$AttackArea/collisionUp.disabled = !(cNode == "run_attack" && velocity.y < 0) 
+		
 func apply_friction(amount) -> void:
 	if velocity.length() > amount:
 		velocity -= velocity.normalized() * amount

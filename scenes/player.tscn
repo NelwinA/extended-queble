@@ -1,4 +1,4 @@
-[gd_scene load_steps=222 format=3 uid="uid://bg4p5oggp7psg"]
+[gd_scene load_steps=226 format=3 uid="uid://bg4p5oggp7psg"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_tywg6"]
 [ext_resource type="Texture2D" uid="uid://p3ft8bnh5e5y" path="res://textures/orc1_idle.png" id="2_a5now"]
@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://vo2yuxc700px" path="res://textures/orc1_run_attack.png" id="5_ql02e"]
 [ext_resource type="Texture2D" uid="uid://dthi8trqm8wep" path="res://textures/orc1_walk.png" id="5_ybj42"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ktqkd"]
-radius = 6.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cskn0"]
+radius = 11.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ysxmd"]
 atlas = ExtResource("2_jshsi")
@@ -1878,15 +1878,27 @@ states/walk/position = Vector2(542, -95.216)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_bk7ue"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_c1y5f"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_yr75w"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_tcsa5"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_i76ax"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_hsa2r"), "attack", "run", SubResource("AnimationNodeStateMachineTransition_pnayj"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_swsfk"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_aoiiu"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_snb86"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_ampmq"), "run_attack", "run", SubResource("AnimationNodeStateMachineTransition_88wyi"), "run", "run_attack", SubResource("AnimationNodeStateMachineTransition_tm3le")]
 graph_offset = Vector2(0, -73.0721)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wapiu"]
+size = Vector2(21, 36.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8hlam"]
+size = Vector2(20, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bx5wi"]
+size = Vector2(49, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q5brk"]
+size = Vector2(39, 12)
+
 [node name="player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_tywg6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_ktqkd")
+shape = SubResource("CapsuleShape2D_cskn0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -9)
+position = Vector2(0, 4)
 sprite_frames = SubResource("SpriteFrames_ktu1l")
 animation = &"idle"
 
@@ -1909,3 +1921,25 @@ parameters/run_attack/TimeScale/scale = 1.0
 parameters/run_attack/run_attack_bs2d/blend_position = Vector2(0, 0)
 parameters/walk/TimeScale/scale = 1.0
 parameters/walk/walk_bs2d/blend_position = Vector2(0, 0)
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="collisionLeft" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(-23, 4)
+shape = SubResource("RectangleShape2D_wapiu")
+disabled = true
+
+[node name="collisionRight" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(23, 5)
+shape = SubResource("RectangleShape2D_8hlam")
+disabled = true
+
+[node name="collisionUp" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(0.5, -20.5)
+shape = SubResource("RectangleShape2D_bx5wi")
+disabled = true
+
+[node name="collisionDown" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(6.5, 22)
+shape = SubResource("RectangleShape2D_q5brk")
+disabled = true
