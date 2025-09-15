@@ -101,6 +101,5 @@ func resetCollisions() -> void:
 func _on_animation_tree_animation_started(anim_name: StringName) -> void:
 	applyCollision()
 
-
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	resetCollisions()
