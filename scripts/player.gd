@@ -66,12 +66,16 @@ func attack() -> void:
 		
 		
 func applyCollision() -> void:
+	var left = Vector2(-1, 0)
+	var right = Vector2(1, 0)
+	var up = Vector2(0, -1)
+	var down = Vector2(0, 1)
 	var cNode = state_machine.get_current_node()
-	$AttackArea/collisionRight.disabled = !(cNode == "run_attack" && velocity.x > 0)
-	$AttackArea/collisionLeft.disabled = !(cNode == "run_attack" && velocity.x < 0)
-	$AttackArea/collisionDown.disabled = !(cNode == "run_attack" && velocity.y > 0)
-	$AttackArea/collisionUp.disabled = !(cNode == "run_attack" && velocity.y < 0) 
-		
+	$AttackArea/collisionRight.disabled = !((cNode == "run_attack" || cNode == "attack") && (blend_position == right || down))
+	$AttackArea/collisionLeft.disabled = !(cNode == "run_attack" && blend_position == left)
+	$AttackArea/collisionDown.disabled = !(cNode == "run_attack" && blend_position == down)
+	$AttackArea/collisionUp.disabled = !(cNode == "run_attack" && blend_position == up) 
+	
 func apply_friction(amount) -> void:
 	if velocity.length() > amount:
 		velocity -= velocity.normalized() * amount
@@ -85,3 +89,4 @@ func apply_movement(amount) -> void:
 func animate() -> void:
 	state_machine.travel(animTree_state_keys[state])
 	animationTree.set(blend_pos_paths[state], blend_position)
+	
