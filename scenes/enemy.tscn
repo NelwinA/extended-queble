@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cyk7ku8g7jx0u"]
+[gd_scene load_steps=34 format=3 uid="uid://cyk7ku8g7jx0u"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_xptyw"]
 [ext_resource type="Texture2D" uid="uid://cmu38yk20eukp" path="res://textures/Warrior_Attack1.png" id="2_mclpn"]
@@ -126,7 +126,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_g67uv")
 }],
-"loop": false,
+"loop": true,
 "name": &"attackTwo",
 "speed": 5.0
 }, {
@@ -196,6 +196,9 @@ radius = 57.0351
 [sub_resource type="CircleShape2D" id="CircleShape2D_hekyt"]
 radius = 112.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h05v7"]
+size = Vector2(87, 54)
+
 [node name="enemy" type="CharacterBody2D" node_paths=PackedStringArray("navAgent")]
 collision_layer = 4
 collision_mask = 7
@@ -208,7 +211,7 @@ navAgent = NodePath("Navigation/NavigationAgent2D")
 position = Vector2(1.52588e-05, 1.6562)
 scale = Vector2(0.635742, 0.642252)
 sprite_frames = SubResource("SpriteFrames_eixiq")
-animation = &"attackOne"
+animation = &"attackTwo"
 
 [node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
 visible = false
@@ -251,7 +254,18 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Aggro/DeAggroRange"]
 shape = SubResource("CircleShape2D_hekyt")
 
+[node name="AttackRange" type="Area2D" parent="Aggro"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Aggro/AttackRange"]
+position = Vector2(-4.5, 1)
+shape = SubResource("RectangleShape2D_h05v7")
+debug_color = Color(0.366503, 0.606468, 0.318653, 0.42)
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="Navigation/RecalculateTimer" to="." method="_on_recalculate_timer_timeout"]
 [connection signal="area_entered" from="Aggro/AggroRange" to="." method="_on_aggro_range_area_entered"]
 [connection signal="area_exited" from="Aggro/DeAggroRange" to="." method="_on_de_aggro_range_area_exited"]
+[connection signal="area_entered" from="Aggro/AttackRange" to="." method="_on_attack_range_area_entered"]
+[connection signal="area_exited" from="Aggro/AttackRange" to="." method="_on_attack_range_area_exited"]
