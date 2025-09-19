@@ -6,6 +6,7 @@ const FRICTION = 500
 const MAX_SPEED = 120
 enum {IDLE, RUN, ATTACK, WALK, RUNATTACK}
 var state = IDLE
+var currentDmg = 100
 
 @onready var animationTree = $AnimationTree
 @onready var state_machine = animationTree["parameters/playback"] 
@@ -103,8 +104,15 @@ func _on_animation_tree_animation_started(anim_name: StringName) -> void:
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	resetCollisions()
-
+	
+func dealDamage(area) -> void:
+	area.get_parent().takeDamage(currentDmg)
 
 func _on_attack_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy"):
 		print("collided")
+		dealDamage(area)
+		
+	
+		
+	

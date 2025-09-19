@@ -1,4 +1,4 @@
-[gd_scene load_steps=226 format=3 uid="uid://bg4p5oggp7psg"]
+[gd_scene load_steps=227 format=3 uid="uid://bg4p5oggp7psg"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_tywg6"]
 [ext_resource type="Texture2D" uid="uid://p3ft8bnh5e5y" path="res://textures/orc1_idle.png" id="2_a5now"]
@@ -1890,11 +1890,16 @@ size = Vector2(49, 11)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q5brk"]
 size = Vector2(39, 12)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_apjgf"]
+radius = 9.0
+
 [node name="player" type="CharacterBody2D"]
 collision_layer = 2
+collision_mask = 7
 script = ExtResource("1_tywg6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape2D_cskn0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -1923,6 +1928,7 @@ parameters/walk/TimeScale/scale = 1.0
 parameters/walk/walk_bs2d/blend_position = Vector2(0, 0)
 
 [node name="AttackArea" type="Area2D" parent="." groups=["player"]]
+visible = false
 
 [node name="collisionLeft" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(-23, 4)
@@ -1943,6 +1949,13 @@ disabled = true
 position = Vector2(6.5, 22)
 shape = SubResource("RectangleShape2D_q5brk")
 disabled = true
+
+[node name="AggroActivator" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroActivator"]
+shape = SubResource("CircleShape2D_apjgf")
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="animation_started" from="AnimationTree" to="." method="_on_animation_tree_animation_started"]
