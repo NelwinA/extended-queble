@@ -14,49 +14,25 @@ var state = IDLE
 
 var HEALTH = 1000
 
-
-var leftV = Vector2(-1, 0)
-var rightV = Vector2(1, 0)
-var upV = Vector2(0, -1)
-var downV = Vector2(0, 1)
-var idleV = Vector2.ZERO
-
-var blend_position : Vector2 = Vector2.ZERO
-var arrayVectors = [leftV, rightV, upV, downV, idleV]
-
 func _ready():
 	homePos = self.global_position
 	
 	navAgent.path_desired_distance = 4
 	navAgent.target_desired_distance = 4
-	
-	
-
 func _physics_process(delta: float) -> void:
 	move(delta)
 	
 func move(delta):
-	#var input_vector = arrayVectors[0]
-	#if HEALTH <= 0:
-		#queue_free()
-	#if input_vector == Vector2.ZERO:
-		#state = IDLE
-		#apply_friction(FRICTION * delta)
-		#$AnimatedSprite2D.play("idle")
-		#
-	#else:
-		#state = RUN
-		#apply_movement(input_vector * ACCELERATION * delta)
-		#blend_position = input_vector
-		#$AnimatedSprite2D.play("run")
-		##blend_position = input_vector
-	#move_and_slide()
+	if HEALTH <= 0:
+		queue_free()
 	if navAgent.is_navigation_finished():
+		$AnimatedSprite2D.play("idle")
 		return
 		
 	var axis = to_local(navAgent.get_next_path_position()).normalized()
 	velocity = axis * speed
-	
+	$AnimatedSprite2D.flip_h = velocity.x < 0
+	$AnimatedSprite2D.play("run")
 	move_and_slide()
 	
 	

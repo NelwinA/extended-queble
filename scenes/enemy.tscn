@@ -211,6 +211,7 @@ sprite_frames = SubResource("SpriteFrames_eixiq")
 animation = &"attackOne"
 
 [node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
+visible = false
 
 [node name="hitboxCollision" type="CollisionShape2D" parent="Area2D"]
 light_mask = 2
@@ -219,19 +220,20 @@ position = Vector2(-3.75, 0)
 shape = SubResource("RectangleShape2D_3c2w2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-3, -2)
 shape = SubResource("CapsuleShape2D_ba51k")
 
 [node name="Navigation" type="Node2D" parent="."]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Navigation"]
-debug_enabled = true
 
 [node name="RecalculateTimer" type="Timer" parent="Navigation"]
 wait_time = 0.1
 autostart = true
 
 [node name="Aggro" type="Node2D" parent="."]
+visible = false
 
 [node name="AggroRange" type="Area2D" parent="Aggro"]
 collision_layer = 0

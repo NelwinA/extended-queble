@@ -1203,3 +1203,7 @@ scale = Vector2(2.41202, 1.5838)
 zoom = Vector2(1.89, 1.89)
 
 [node name="enemy" parent="." instance=ExtResource("3_8t4i2")]
+position = Vector2(-198, -121)
+
+[node name="enemy2" parent="." instance=ExtResource("3_8t4i2")]
+position = Vector2(178, 117)
