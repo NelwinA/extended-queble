@@ -64,7 +64,7 @@ func _on_recalculate_timer_timeout() -> void:
 func _on_aggro_range_area_entered(area: Area2D) -> void:
 	target = area.owner
 	print("entered")
-
+#s
 func _on_de_aggro_range_area_exited(area: Area2D) -> void:
 	if area.owner == target:
 		target = null

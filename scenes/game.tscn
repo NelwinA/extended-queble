@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://ba1xax1sa8da1"]
+[gd_scene format=4 uid="uid://ba1xax1sa8da1"]
 
 [ext_resource type="Texture2D" uid="uid://bjrgr66huyse2" path="res://textures/main_tileset_texture_a.png" id="1_qnpcd"]
 [ext_resource type="PackedScene" uid="uid://bg4p5oggp7psg" path="res://scenes/player.tscn" id="2_xyr3s"]
@@ -1187,23 +1187,23 @@ physics_layer_0/collision_layer = 1
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_vmvgg")
 
-[node name="game" type="Node2D"]
+[node name="game" type="Node2D" unique_id=1832486521]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2049528998]
 position = Vector2(-34, -94)
 scale = Vector2(-5.8789, -4.50759)
 tile_map_data = PackedByteArray("AAD8//v/AAAIAB4AAAD8//z/AAAIAB8AAAD8//3/AAAIACAAAAD8//7/AAAIACEAAAD8////AAAIACIAAAD8/wAAAAAIACMAAAD8/wEAAAAIACQAAAD9//v/AAAJAB4AAAD9//z/AAAJAB8AAAD9//3/AAAJACAAAAD9//7/AAAJACEAAAD9////AAAJACIAAAD9/wAAAAAJACMAAAD9/wEAAAAJACQAAAD+//v/AAAKAB4AAAD+//z/AAAKAB8AAAD+//3/AAAKACAAAAD+//7/AAAKACEAAAD+////AAAKACIAAAD+/wAAAAAKACMAAAD+/wEAAAAKACQAAAD///v/AAALAB4AAAD///z/AAALAB8AAAD///3/AAALACAAAAD///7/AAALACEAAAD/////AAALACIAAAD//wAAAAALACMAAAD//wEAAAALACQAAAAAAPv/AAAMAB4AAAAAAPz/AAAMAB8AAAAAAP3/AAAMACAAAAAAAP7/AAAMACEAAAAAAP//AAAMACIAAAAAAAAAAAAMACMAAAAAAAEAAAAMACQAAAABAPv/AAANAB4AAAABAPz/AAANAB8AAAABAP3/AAANACAAAAABAP7/AAANACEAAAABAP//AAANACIAAAABAAAAAAANACMAAAABAAEAAAANACQAAAACAPv/AAAOAB4AAAACAPz/AAAOAB8AAAACAP3/AAAOACAAAAACAP7/AAAOACEAAAACAP//AAAOACIAAAACAAAAAAAOACMAAAACAAEAAAAOACQAAAADAPv/AAAPAB4AAAADAPz/AAAPAB8AAAADAP3/AAAPACAAAAADAP7/AAAPACEAAAADAP//AAAPACIAAAADAAAAAAAPACMAAAADAAEAAAAPACQAAAD8/wIAAAAIACUAAAD9/wIAAAAJACUAAAD+/wIAAAAKACUAAAD//wIAAAALACUAAAAAAAIAAAAMACUAAAABAAIAAAANACUAAAACAAIAAAAOACUAAAADAAIAAAAPACUAAAA=")
 tile_set = SubResource("TileSet_bltj0")
 collision_visibility_mode = 1
 
-[node name="player" parent="." instance=ExtResource("2_xyr3s")]
+[node name="player" parent="." unique_id=1028122953 instance=ExtResource("2_xyr3s")]
 scale = Vector2(2.41202, 1.5838)
 
-[node name="Camera2D" type="Camera2D" parent="player"]
+[node name="Camera2D" type="Camera2D" parent="player" unique_id=1739607955]
 zoom = Vector2(1.89, 1.89)
 
-[node name="enemy" parent="." instance=ExtResource("3_8t4i2")]
+[node name="enemy" parent="." unique_id=282884274 instance=ExtResource("3_8t4i2")]
 position = Vector2(-198, -121)
 
-[node name="enemy2" parent="." instance=ExtResource("3_8t4i2")]
+[node name="enemy2" parent="." unique_id=72344626 instance=ExtResource("3_8t4i2")]
 position = Vector2(178, 117)
